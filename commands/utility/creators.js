@@ -19,6 +19,7 @@ module.exports = {
 		});
 
 		if (interaction.options.getSubcommand() === "reload") {
+			let records = [];
 			const response = await lark.listRecords(
 				process.env.CREATOR_BASE,
 				process.env.APPLICATION_TABLE,
@@ -31,7 +32,26 @@ module.exports = {
 				});
 			}
 
-			console.log(response.items);
+			for (const record of response.items) {
+				const discordId = record.fields["Discord ID"];
+				await interaction.guild.members
+					.fetch(discordId)
+					.then(async (member) => {
+						await member.roles.add(process.env.JUNGO_CREATOR_ROLE).then(() => {
+							records.push(record.record_id);
+						});
+					})
+					.catch((error) => console.error(error));
+			}
+
+			for (const record of records) {
+				await lark.updateRecord(
+					process.env.CREATOR_BASE,
+					process.env.APPLICATION_TABLE,
+					record,
+					{ Status: "Role Given" }
+				);
+			}
 
 			await interaction.editReply({
 				content: "Creators reloaded",
