@@ -49,7 +49,7 @@ module.exports = {
 					process.env.CREATOR_BASE,
 					process.env.APPLICATION_TABLE,
 					record,
-					{ Status: "Role Given" }
+					{ fields: { Status: "Role Given" } }
 				);
 			}
 
