@@ -31,10 +31,11 @@ module.exports = {
 				});
 			}
 
-            console.log(response.items);
+			console.log(response.items);
 
-            await interaction.editReply({
-                content: "Creators reloaded",
+			await interaction.editReply({
+				content: "Creators reloaded",
+			});
 		}
 	},
 };
