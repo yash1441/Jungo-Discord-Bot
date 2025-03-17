@@ -34,5 +34,5 @@ module.exports = {
 };
 
 async function sendSubmissionLark(embedData) {
-	console.log(embedData);
+	console.log(embedData.data);
 }
