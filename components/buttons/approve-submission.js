@@ -25,14 +25,41 @@ module.exports = {
 				inline: true,
 			});
 
-		await sendSubmissionLark(approvedEmbed);
+		await sendSubmissionLark(approvedEmbed.data);
 
 		await interaction.message
 			.edit({ embeds: [approvedEmbed], components: [] })
 			.then(() => interaction.deleteReply());
+
+		await interaction.editReply({
+			content: "The submission has been approved.",
+		});
 	},
 };
 
 async function sendSubmissionLark(embed) {
-	console.log(embed.data, embed.data.title);
+	const platform = embed.title;
+	const theme = embed.description;
+	const discordId = embed.footer.text;
+	const discordUsername = embed.author.name;
+	const region = embed.fields[0].value;
+	const url = embed.fields[1].value.replace("[View](", "").replace(")", "");
+
+	await lark.createRecord(
+		process.env.CREATOR_BASE,
+		process.env.SUBMISSION_TABLE,
+		{
+			fields: {
+				"Discord ID": discordId,
+				"Discord Name": discordUsername,
+				Region: region,
+				Platform: platform,
+				Theme: theme,
+				Link: {
+					link: url,
+					text: "View",
+				},
+			},
+		}
+	);
 }
