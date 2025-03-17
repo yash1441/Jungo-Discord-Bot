@@ -1,6 +1,7 @@
 const {
 	ModalBuilder,
 	TextInputBuilder,
+	TextInputStyle,
 	ActionRowBuilder,
 } = require("discord.js");
 require("dotenv").config();
