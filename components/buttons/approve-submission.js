@@ -33,6 +33,6 @@ module.exports = {
 	},
 };
 
-async function sendSubmissionLark(embedData) {
-	console.log(embedData.data);
+async function sendSubmissionLark(embed) {
+	console.log(embed.data, embed.data.title);
 }
