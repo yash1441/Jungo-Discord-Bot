@@ -25,7 +25,7 @@ module.exports = {
 				inline: true,
 			});
 
-		await sendSubmissionLark(interaction, approvedEmbed);
+		await sendSubmissionLark(approvedEmbed);
 
 		await interaction.message
 			.edit({ embeds: [approvedEmbed], components: [] })
