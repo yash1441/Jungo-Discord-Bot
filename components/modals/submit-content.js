@@ -39,6 +39,11 @@ module.exports = {
 			channel,
 			interaction.user
 		);
+
+		await interaction.editReply({
+			content:
+				"Your submission has been sent to the moderation team for review and submission.",
+		});
 	},
 };
 
