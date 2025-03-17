@@ -1,10 +1,4 @@
-const {
-	EmbedBuilder,
-	userMention,
-	hyperlink,
-	bold,
-	MessageFlags,
-} = require("discord.js");
+const { EmbedBuilder, userMention, MessageFlags } = require("discord.js");
 const lark = require("../../utils/lark.js");
 require("dotenv").config();
 
@@ -30,10 +24,6 @@ module.exports = {
 		await interaction.message
 			.edit({ embeds: [approvedEmbed], components: [] })
 			.then(() => interaction.deleteReply());
-
-		await interaction.editReply({
-			content: "The submission has been approved.",
-		});
 	},
 };
 
