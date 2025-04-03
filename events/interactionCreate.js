@@ -110,7 +110,7 @@ async function checkCooldown(interaction, element) {
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(element.data.name);
-	const defaultCooldownDuration = 3;
+	const defaultCooldownDuration = 0;
 	const cooldownAmount = (element.cooldown ?? defaultCooldownDuration) * 1_000;
 
 	if (timestamps.has(interaction.user.id)) {
