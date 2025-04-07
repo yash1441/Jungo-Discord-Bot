@@ -37,11 +37,24 @@ module.exports = {
 			.setPlaceholder("Link to your content")
 			.setRequired(true);
 
+		const jungoIdInput = new TextInputBuilder()
+			.setCustomId("jungo-id")
+			.setLabel("Jungo ID")
+			.setStyle(TextInputStyle.Short)
+			.setPlaceholder("What's your Jungo ID?")
+			.setRequired(true);
+
 		const firstActionRow = new ActionRowBuilder().addComponents(regionInput);
 		const secondActionRow = new ActionRowBuilder().addComponents(themeInput);
 		const thirdActionRow = new ActionRowBuilder().addComponents(urlInput);
+		const fourthActionRow = new ActionRowBuilder().addComponents(jungoIdInput);
 
-		modal.addComponents(firstActionRow, secondActionRow, thirdActionRow);
+		modal.addComponents(
+			firstActionRow,
+			secondActionRow,
+			thirdActionRow,
+			fourthActionRow
+		);
 
 		await interaction.showModal(modal);
 	},

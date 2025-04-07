@@ -22,6 +22,7 @@ module.exports = {
 		const region = await interaction.fields.getTextInputValue("region");
 		const theme = await interaction.fields.getTextInputValue("theme");
 		const url = await interaction.fields.getTextInputValue("url");
+		const jungoId = await interaction.fields.getTextInputValue("jungo-id");
 
 		if (!isValidUrl(url)) {
 			return await interaction.editReply({
@@ -35,6 +36,7 @@ module.exports = {
 			region,
 			theme,
 			url,
+			jungoId,
 			platform,
 			channel,
 			interaction.user
@@ -67,12 +69,21 @@ function getPlatform(url) {
 	return "Other";
 }
 
-function sendSubmissionAdmin(region, theme, url, platform, channel, user) {
+function sendSubmissionAdmin(
+	region,
+	theme,
+	url,
+	jungoId,
+	platform,
+	channel,
+	user
+) {
 	const embed = new EmbedBuilder()
 		.setTitle(platform)
 		.setDescription(theme)
 		.addFields({ name: "Region", value: region, inline: true })
 		.addFields({ name: "URL", value: hyperlink("View", url), inline: true })
+		.addFields({ name: "Jungo ID", value: jungoId, inline: true })
 		.setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
 		.setFooter({ text: user.id })
 		.setColor(process.env.EMBED_COLOR);

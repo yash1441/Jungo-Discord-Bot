@@ -34,6 +34,7 @@ async function sendSubmissionLark(embed) {
 	const discordUsername = embed.author.name;
 	const region = embed.fields[0].value;
 	const url = embed.fields[1].value.replace("[View](", "").replace(")", "");
+	const jungoId = embed.fields[2].value;
 
 	await lark.createRecord(
 		process.env.CREATOR_BASE,
@@ -42,6 +43,7 @@ async function sendSubmissionLark(embed) {
 			fields: {
 				"Discord ID": discordId,
 				"Discord Name": discordUsername,
+				"Jungo ID": jungoId,
 				Region: region,
 				Platform: platform,
 				Theme: theme,
