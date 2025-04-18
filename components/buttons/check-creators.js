@@ -28,10 +28,8 @@ module.exports = {
 			jungoId: response.items[0].fields["Jungo ID"] ?? "N/A",
 			region: response.items[0].fields["Region"] ?? "N/A",
 			monthlyViews: response.items[0].fields["Monthly Views"] ?? 0,
-			rank: response.items[0].fields["Rank"] ?? "N/A",
+			rank: response.items[0].fields["Rank"].text ?? "N/A",
 		};
-
-		console.log(response.items[0].fields["Rank"]);
 
 		const embed = new EmbedBuilder()
 			.setColor("#0099ff")
