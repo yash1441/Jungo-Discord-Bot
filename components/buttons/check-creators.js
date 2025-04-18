@@ -31,7 +31,7 @@ module.exports = {
 			rank: response.items[0].fields["Rank"] ?? "N/A",
 		};
 
-		console.log(response.items[0]);
+		console.log(response.items[0].fields["Rank"]);
 
 		const embed = new EmbedBuilder()
 			.setColor("#0099ff")
