@@ -23,11 +23,12 @@ module.exports = {
 
 		const data = {
 			discordId: response.items[0].fields["Discord ID"],
-			username: response.items[0].fields["Discord Name"],
-			jungoId: response.items[0].fields["Jungo ID"],
-			region: response.items[0].fields["Region"],
-			monthlyViews: response.items[0].fields["Monthly Views"],
-			rank: response.items[0].fields["Rank"],
+			username:
+				response.items[0].fields["Discord Name"] ?? interaction.user.username,
+			jungoId: response.items[0].fields["Jungo ID"] ?? "N/A",
+			region: response.items[0].fields["Region"] ?? "N/A",
+			monthlyViews: response.items[0].fields["Monthly Views"] ?? 0,
+			rank: response.items[0].fields["Rank"] ?? "N/A",
 		};
 
 		const embed = new EmbedBuilder()
