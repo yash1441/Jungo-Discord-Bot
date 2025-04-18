@@ -49,7 +49,7 @@ async function sendSubmissionLark(embed) {
 				Theme: theme,
 				Link: {
 					link: url,
-					text: "View",
+					text: url,
 				},
 			},
 		}
