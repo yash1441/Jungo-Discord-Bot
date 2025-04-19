@@ -31,7 +31,10 @@ module.exports = {
 			rank: response.items[0].fields["Rank"].text ?? "N/A",
 		};
 
-		console.log(response.items[0]);
+		console.log(
+			response.items[0].fields["Region"],
+			response.items[0].fields["Jungo ID"]
+		);
 
 		const embed = new EmbedBuilder()
 			.setColor("#0099ff")
