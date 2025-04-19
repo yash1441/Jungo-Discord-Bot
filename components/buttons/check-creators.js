@@ -25,16 +25,11 @@ module.exports = {
 			discordId: response.items[0].fields["Discord ID"],
 			username:
 				response.items[0].fields["Discord Name"] ?? interaction.user.username,
-			jungoId: response.items[0].fields["Jungo ID"] ?? "N/A",
-			region: response.items[0].fields["Region"] ?? "N/A",
+			jungoId: response.items[0].fields["Jungo ID"]?.text ?? "N/A",
+			region: response.items[0].fields["Region"]?.text ?? "N/A",
 			monthlyViews: response.items[0].fields["Monthly Views"] ?? 0,
-			rank: response.items[0].fields["Rank"].text ?? "N/A",
+			rank: response.items[0].fields["Rank"]?.text ?? "N/A",
 		};
-
-		console.log(
-			response.items[0].fields["Region"],
-			response.items[0].fields["Jungo ID"]
-		);
 
 		const embed = new EmbedBuilder()
 			.setColor("#0099ff")
