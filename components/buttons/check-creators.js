@@ -31,8 +31,6 @@ module.exports = {
 			rank: response.items[0].fields["Rank"]?.[0]?.text ?? "N/A",
 		};
 
-		console.log(response.items[0], response.items[0].fields["Jungo ID"]);
-
 		const embed = new EmbedBuilder()
 			.setColor("#0099ff")
 			.setTitle("Jungo Creator Information")
