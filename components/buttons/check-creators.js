@@ -54,12 +54,12 @@ module.exports = {
 				{
 					name: "Boosted Views",
 					value: data.boostedViews.toString(),
-					inline: true,
+					inline: false,
 				},
 				{
 					name: "Final Views",
 					value: data.finalViews.toString(),
-					inline: true,
+					inline: false,
 				}
 			)
 			.setTimestamp();
