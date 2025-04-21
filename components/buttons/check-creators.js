@@ -28,6 +28,8 @@ module.exports = {
 			jungoId: response.items[0].fields["Jungo ID"]?.[0]?.text ?? "N/A",
 			region: response.items[0].fields["Region"]?.[0]?.text ?? "N/A",
 			monthlyViews: response.items[0].fields["Monthly Views"] ?? 0,
+			boostedViews: response.items[0].fields["Boosted Views"] ?? 0,
+			finalViews: response.items[0].fields["Final Views"] ?? 0,
 			rank: response.items[0].fields["Rank"]?.[0]?.text ?? "N/A",
 		};
 
@@ -43,12 +45,22 @@ module.exports = {
 				},
 				{ name: "Jungo ID", value: data.jungoId, inline: true },
 				{ name: "Region", value: data.region, inline: true },
+				{ name: "Rank", value: data.rank, inline: true },
 				{
 					name: "Monthly Views",
 					value: data.monthlyViews.toString(),
+					inline: false,
+				},
+				{
+					name: "Boosted Views",
+					value: data.boostedViews.toString(),
 					inline: true,
 				},
-				{ name: "Rank", value: data.rank, inline: true }
+				{
+					name: "Final Views",
+					value: data.finalViews.toString(),
+					inline: true,
+				}
 			)
 			.setTimestamp();
 
