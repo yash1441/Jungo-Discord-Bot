@@ -31,6 +31,7 @@ module.exports = {
 			boostedViews: response.items[0].fields["Boosted Views"] ?? 0,
 			finalViews: response.items[0].fields["Final Views"] ?? 0,
 			rank: response.items[0].fields["Rank"]?.[0]?.text ?? "N/A",
+			giftCode: response.items[0].fields["Gift Code"] ?? "N/A",
 		};
 
 		const embed = new EmbedBuilder()
@@ -45,22 +46,12 @@ module.exports = {
 				},
 				{ name: "Jungo ID", value: data.jungoId, inline: true },
 				{ name: "Region", value: data.region, inline: true },
-				{ name: "Rank", value: data.rank, inline: true },
 				{
-					name: "Monthly Views",
-					value: data.monthlyViews.toString(),
+					name: "Rank (Total Views - Boosted Views)",
+					value: `${data.rank} (${data.finalViews.toString()})`,
 					inline: false,
 				},
-				{
-					name: "Boosted Views",
-					value: data.boostedViews.toString(),
-					inline: false,
-				},
-				{
-					name: "Final Views",
-					value: data.finalViews.toString(),
-					inline: false,
-				}
+				{ name: "Gift Code", value: data.giftCode, inline: false }
 			)
 			.setTimestamp();
 
