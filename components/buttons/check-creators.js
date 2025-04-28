@@ -15,7 +15,13 @@ module.exports = {
 			{ filter: `CurrentValue.[Discord ID] = "${interaction.user.id}"` }
 		);
 
-		if (!response || !response.total) {
+		if (!response) {
+			return interaction.editReply({
+				content:
+					"There was an error retrieving your information. Please try again later.",
+			});
+		}
+		if (!response.total) {
 			return interaction.editReply({
 				content: "You are not a Jungo Creator.",
 			});
