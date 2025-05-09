@@ -39,15 +39,23 @@ module.exports = {
 					.then(async (member) => {
 						await member.roles.add(process.env.JUNGO_CREATOR_ROLE).then(() => {
 							records.push(record.record_id);
-							interaction.client.users.send(discordId, {
-								content:
-									bold(
-										"Congratulations, you are now officially a Jungo Creator!"
-									) +
-									"\nYou've unlocked access to the exclusive submission channel and are eligible for monthly rewards!\nIf the video you used in your application was a JungoJam-related post published after " +
-									bold("March 27") +
-									", please resubmit it in <#1350671187927240737> to ensure your rewards are accurately processed.\nCreator rewards will be refreshed every month—can't wait to see more of your amazing content!",
-							});
+							interaction.client.users
+								.send(discordId, {
+									content:
+										bold(
+											"Congratulations, you are now officially a Jungo Creator!"
+										) +
+										"\nYou've unlocked access to the exclusive submission channel and are eligible for monthly rewards!\nIf the video you used in your application was a JungoJam-related post published after " +
+										bold("March 27") +
+										", please resubmit it in <#1350671187927240737> to ensure your rewards are accurately processed.\nCreator rewards will be refreshed every month—can't wait to see more of your amazing content!",
+								})
+								.catch((error) => {
+									console.error(
+										`Failed to send message to user ${discordId}: ${JSON.parse(
+											error.rawError
+										)}`
+									);
+								});
 						});
 					})
 					.catch((error) => console.error(error));
