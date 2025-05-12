@@ -60,8 +60,9 @@ module.exports = {
 								})
 								.catch((error) => {
 									console.error(
-										`Failed to send message to user ${discordId}: \n`,
-										error
+										`Failed to send message to user ${discordId}: ${
+											error.rawError?.message ?? "Unknown error"
+										}`
 									);
 								});
 						});
