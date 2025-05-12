@@ -61,7 +61,7 @@ module.exports = {
 								.catch((error) => {
 									console.error(
 										`Failed to send message to user ${discordId}: ${JSON.parse(
-											error.rawError
+											error
 										)}`
 									);
 								});
