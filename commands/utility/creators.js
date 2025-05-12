@@ -19,7 +19,8 @@ module.exports = {
 		});
 
 		if (interaction.options.getSubcommand() === "reload") {
-			let records = [];
+			let recordIds = [],
+				message = "Creators reloaded";
 			const response = await lark.listRecords(
 				process.env.CREATOR_BASE,
 				process.env.APPLICATION_TABLE,
@@ -47,7 +48,7 @@ module.exports = {
 					.fetch(discordId)
 					.then(async (member) => {
 						await member.roles.add(process.env.JUNGO_CREATOR_ROLE).then(() => {
-							records.push(record.record_id);
+							recordIds.push(record.record_id);
 							interaction.client.users
 								.send(discordId, {
 									content:
@@ -64,23 +65,25 @@ module.exports = {
 											error.rawError?.message ?? "Unknown error"
 										}`
 									);
+									message += `\nSuccessfully added the role to ${discordId} but failed to DM`;
 								});
+							message += `\nSuccessfully added the role to ${discordId} and sent a DM`;
 						});
 					})
 					.catch((error) => console.error(error));
 			}
 
-			for (const record of records) {
+			for (const recordId of recordIds) {
 				await lark.updateRecord(
 					process.env.CREATOR_BASE,
 					process.env.APPLICATION_TABLE,
-					record,
+					recordId,
 					{ fields: { Status: "Role Given" } }
 				);
 			}
 
 			await interaction.editReply({
-				content: "Creators reloaded",
+				content: message,
 			});
 		}
 	},
