@@ -34,6 +34,15 @@ module.exports = {
 
 			for (const record of response.items) {
 				const discordId = record.fields["Discord ID"];
+				if (!isValidDiscordId(discordId)) {
+					await lark.updateRecord(
+						process.env.CREATOR_BASE,
+						process.env.APPLICATION_TABLE,
+						record.record_id,
+						{ fields: { Status: "Incorrect" } }
+					);
+					continue;
+				}
 				await interaction.guild.members
 					.fetch(discordId)
 					.then(async (member) => {
@@ -76,3 +85,7 @@ module.exports = {
 		}
 	},
 };
+
+function isValidDiscordId(id) {
+	return /^\d{17,19}$/.test(id);
+}
