@@ -49,7 +49,7 @@ module.exports = {
 			.setLabel("Views")
 			.setStyle(TextInputStyle.Short)
 			.setPlaceholder(
-				"How many views does your content have? We will verify it, so please make sure the information is accurate."
+				"How many views does your content have? We will verify the accuracy of this information."
 			)
 			.setRequired(true);
 
