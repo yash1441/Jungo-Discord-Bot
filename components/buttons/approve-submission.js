@@ -35,6 +35,8 @@ async function sendSubmissionLark(embed) {
 	const region = embed.fields[0].value;
 	const url = embed.fields[1].value.replace("[View](", "").replace(")", "");
 	const jungoId = embed.fields[2].value;
+	const views = embed.fields[3].value;
+	const viewsInt = parseInt(views);
 
 	await lark.createRecord(
 		process.env.CREATOR_BASE,
@@ -51,6 +53,7 @@ async function sendSubmissionLark(embed) {
 					link: url,
 					text: url,
 				},
+				Views: viewsInt,
 			},
 		}
 	);

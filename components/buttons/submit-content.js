@@ -44,16 +44,27 @@ module.exports = {
 			.setPlaceholder("What's your Jungo ID?")
 			.setRequired(true);
 
+		const viewsInput = new TextInputBuilder()
+			.setCustomId("views")
+			.setLabel("Views")
+			.setStyle(TextInputStyle.Short)
+			.setPlaceholder(
+				"How many views does your content have? We will verify it, so please make sure the information is accurate."
+			)
+			.setRequired(true);
+
 		const firstActionRow = new ActionRowBuilder().addComponents(regionInput);
 		const secondActionRow = new ActionRowBuilder().addComponents(themeInput);
 		const thirdActionRow = new ActionRowBuilder().addComponents(urlInput);
 		const fourthActionRow = new ActionRowBuilder().addComponents(jungoIdInput);
+		const fifthActionRow = new ActionRowBuilder().addComponents(viewsInput);
 
 		modal.addComponents(
 			firstActionRow,
 			secondActionRow,
 			thirdActionRow,
-			fourthActionRow
+			fourthActionRow,
+			fifthActionRow
 		);
 
 		await interaction.showModal(modal);

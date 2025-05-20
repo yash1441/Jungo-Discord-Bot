@@ -23,6 +23,8 @@ module.exports = {
 		const theme = await interaction.fields.getTextInputValue("theme");
 		const url = await interaction.fields.getTextInputValue("url");
 		const jungoId = await interaction.fields.getTextInputValue("jungo-id");
+		const views = await interaction.fields.getTextInputValue("views");
+		const viewsInt = parseInt(views);
 
 		if (!isValidUrl(url)) {
 			return await interaction.editReply({
@@ -37,6 +39,7 @@ module.exports = {
 			theme,
 			url,
 			jungoId,
+			viewsInt,
 			platform,
 			channel,
 			interaction.user
@@ -74,6 +77,7 @@ function sendSubmissionAdmin(
 	theme,
 	url,
 	jungoId,
+	views,
 	platform,
 	channel,
 	user
@@ -84,6 +88,7 @@ function sendSubmissionAdmin(
 		.addFields({ name: "Region", value: region, inline: true })
 		.addFields({ name: "URL", value: hyperlink("View", url), inline: true })
 		.addFields({ name: "Jungo ID", value: jungoId, inline: true })
+		.addFields({ name: "Views", value: views.toString(), inline: true })
 		.setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
 		.setFooter({ text: user.id })
 		.setColor(process.env.EMBED_COLOR);
